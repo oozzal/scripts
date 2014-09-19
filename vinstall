@@ -1,4 +1,7 @@
 #!/Users/cloudfactory001/.rvm/rubies/ruby-2.1.2/bin/ruby
+"""
+Install vim plugin
+"""
 require 'colorize'
 
 path = ARGV[0]

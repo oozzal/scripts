@@ -1,10 +1,21 @@
 #!/Users/cloudfactory001/.rvm/rubies/ruby-2.1.2/bin/ruby
+"""
+Define english word in Nepali
+"""
 require 'nokogiri'
 require 'httparty'
 require 'colorize'
 
 URL = "http://www.englishnepalidictionary.com/"
 word = ARGV[0]
+
+unless word
+  print "Usage:".colorize(:red)
+  puts "\tdefine <word>".colorize(:green)
+  print "Example:".colorize(:red)
+  puts "define welcome".colorize(:green)
+  exit
+end
 
 page = Nokogiri::HTML(HTTParty.get "#{URL}?q=#{word}")
 meaning = page.css('.search-result>h3').first.children.first.text.split("-").last
