@@ -1,0 +1,13 @@
+#!/Users/cloudfactory001/.rvm/rubies/ruby-2.1.2/bin/ruby
+require 'nokogiri'
+require 'httparty'
+require 'colorize'
+
+URL = "http://www.englishnepalidictionary.com/"
+word = ARGV[0]
+
+page = Nokogiri::HTML(HTTParty.get "#{URL}?q=#{word}")
+meaning = page.css('.search-result>h3').first.children.first.text.split("-").last
+
+puts "#{word.colorize(:red)} => #{meaning.colorize(:green)}"
+

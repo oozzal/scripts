@@ -1,0 +1,19 @@
+#!/Users/cloudfactory001/.rvm/rubies/ruby-2.1.2/bin/ruby
+require 'colorize'
+
+path = ARGV[0]
+
+unless path
+  print "Usage:".colorize(:red)
+  puts "\tvinstall <username>/<repo-name>".colorize(:green)
+  print "Example:".colorize(:red)
+  puts "vinstall tpope/vim-rails".colorize(:green)
+  exit
+end
+
+repo = path.split("/").last if path
+
+`git clone git://github.com/#{path}.git ~/.vim_runtime/sources_non_forked/#{repo}`
+
+puts "Installation of #{repo.colorize(:green)} finished. Restart vim."
+
